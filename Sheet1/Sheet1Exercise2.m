@@ -1,5 +1,5 @@
 % Solutions to Exercise 1.2
-% by Leif Van Holland and 2nd author
+% by Lukas Drexler and Leif Van Holland
 
 SAMPLING_RATE = 44100; % samples / second (Hz)
 FREQ = 1000; % in Hz
