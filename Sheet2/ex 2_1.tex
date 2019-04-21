@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage{dsfont}
+\usepackage{textcomp}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+
+\title{Solutions to Sheet 2}
+\author{Lukas Drexler, Leif Van Holland \\ \\
+\textsc{Pattern Matching and Machine Learning} \\
+\textsc{for Audio Signal Processing}}
+\maketitle
+
+\section*{Task 2.1}
+\subsection*{a)}
+\subsubsection*{•(i)}
+$\rho$ is an $N-$th root of unity, so for integer multiples $m$ of $N$ we have $\rho^{m} = 1$. Therefore,
+\begin{align*}
+\mathbf{u}_{N-k}(n) &= \exp(2\pi i(N-k)n/N) = \rho^{(N-k)n} = \rho^{N\cdot n-k\cdot n} = \rho^{N\cdot n}\cdot \rho^{-k\cdot n} = \rho^{-k\cdot n}\\
+&=\exp(-2\pi ikn/N) = \overline{\mathbf{u}_{k}}(n),
+\end{align*}
+for all $n \in [0:N-1]$.
+\subsubsection*{(ii)}
+By definition, $\text{DFT}_{N}(k,n) = \exp(-2\pi ikn/N) = \omega^{kn}$. If we multiply an $N\times N$ matrix with the $k-$th unit vector $e_{k}$, we get the $k-$th column of the matrix.
+Thus,
+\begin{align*}
+\text{DFT}_{N}e_{k} &= (\omega^{0\cdot k},\omega^{1\cdot k}, ... , \omega^{(N-1)\cdot k})^{\textsc{T}} = (\rho^{-0\cdot k},\rho^{-1\cdot k}, ... , \rho^{-(N-1)\cdot k})^{\textsc{T}} = \overline{\mathbf{u}_{k}} \\&= \mathbf{u}_{N-k},
+\end{align*}
+where the last equality follows from (i).
+\subsubsection*{(iii)}
+By (ii) we know that $\text{DFT}_N e_{k} = \mathbf{u}_{N-k} = \overline{\mathbf{u}_{k}}.$ Also we know that $\text{DFT}_N^{-1} = \frac{1}{N} \overline{\text{DFT}_N}.$ Thus, we can conclude that
+\begin{align*}
+\text{DFT}_N \mathbf{u}_{k} = \text{DFT}_N \overline{\mathbf{u}_{N-k}} = \text{DFT}_N \overline{\text{DFT}_N e_{k}} = N \mathbf{I}_{N} e_{k} = N e_{k},
+\end{align*}
+where $\mathbf{I}_{N}$ is the $N\times N$ unity matrix.
+\subsection*{b)}
+For $N = 3$ we have $\omega = \exp(-2\pi i/3)$. By definition of $\text{DTF}_{N}$, we have
+\begin{align*}
+\text{DTF}_{3} &= \left( \begin{array}{rrr}1 & 1 & 1 \\1 & \omega & \omega^{2} \\1 & \omega^{2} & \omega^{4}\\\end{array}\right) =
+\left( \begin{array}{rrr}1 & 1 & 1 \\1 & \exp(-2\pi i/3) & \exp(-4\pi i/3) \\1 & \exp(-4\pi i/3) & \exp(-8\pi i/3)\\\end{array}\right)\\
+&= \left( \begin{array}{rrr}1 & 1 & 1 \\1 & -0.5-\sqrt{3}/2\cdot i & -0.5+\sqrt{3}/2\cdot i \\1 & -0.5+\sqrt{3}/2\cdot i & -0.5-\sqrt{3}/2\cdot i\\\end{array}\right),\\
+\end{align*}
+because $\sin(2\pi/3) = -\sqrt{3}/2$ and $\cos(2\pi/3) = -0.5$.
+\end{document}
