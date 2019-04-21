@@ -43,4 +43,14 @@ For $N = 3$ we have $\omega = \exp(-2\pi i/3)$. By definition of $\text{DTF}_{N}
 &= \left( \begin{array}{rrr}1 & 1 & 1 \\1 & -0.5-\sqrt{3}/2\cdot i & -0.5+\sqrt{3}/2\cdot i \\1 & -0.5+\sqrt{3}/2\cdot i & -0.5-\sqrt{3}/2\cdot i\\\end{array}\right),\\
 \end{align*}
 because $\sin(2\pi/3) = -\sqrt{3}/2$ and $\cos(2\pi/3) = -0.5$.
+
+\section*{Task 2.2}
+\begin{itemize}
+    \item [a)] We know that $\cos(z)=\frac{1}{2}(e^{iz}+e^{-iz})$ and $\pmb{u}_k(n) := \exp(\frac{2\pi ikn}{N})$. Therefore
+    \[\pmb{f}=\frac{1}{2}(\pmb{u}_4+\pmb{u}_{N-4})+2(\pmb{u}_{10}+\pmb{u}_{N-10})+3(\pmb{u}_{18}+\pmb{u}_{N-18}).\]
+    \item [b)] From a) we get
+    \[\left\lvert \hat{\pmb{f}}(k) \right\rvert = \frac{N}{2}\: w_k, \quad w_4=w_{N-4}=1,\: w_{10}=w_{N-10}=2,\: w_{18}=w_{N-18}=3\]
+    and otherwise $w_k = 0$.
+\end{itemize}
+
 \end{document}
