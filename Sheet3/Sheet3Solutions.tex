@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+ 
+ 
+\begin{document}
+
+
+\title{Solutions to Sheet 3}
+\author{Lukas Drexler, Leif Van Holland \\ \\
+\textsc{Pattern Matching and Machine Learning} \\
+\textsc{for Audio Signal Processing}}
+\maketitle
+
+\section*{Exercise 3.1}
+\begin{itemize}
+    \item[a)] \begin{align*}
+        X_0 = \left(\omega_N^{0\cdot 0},\: ...\:, \omega_N^{0\cdot (N-1)}\right)\cdot x
+        &=\sum_{k=0}^{N-1} \underbrace{\omega_N^0}_{=1}\cdot x_k
+        = \sum_{k=0}^{N-1} x_k \in \R \\
+        \\
+        X_M = \left(\omega_N^{0M},\: ...\:, \omega_N^{(N-1)M}\right)\cdot x
+        &= \sum_{k=0}^{N-1}\omega_N^{k M}\cdot x_k
+        = \sum_{k=0}^{N-1}\exp\left(\frac{-2\pi i M}{2M}\right)^k\cdot x_k \\
+        &= \sum_{k=0}^{N-1}\exp(-\pi i k)\cdot x_k = \sum_{k=0}^{N-1} (-1)^k \cdot x_k \in \R \\
+        \\
+        X_{N-k} = \sum_{l=0}^{N-1} \omega_N^{l(N-k)}\cdot x_l 
+        &= \sum_{l=0}^{N-1} \exp\left(\frac{-2\pi i l (N-k)}{N}\right)\cdot x_l \\
+        &= \sum_{l=0}^{N-1} \exp\left(\frac{2\pi i\cdot l k}{N} - 2\pi i\cdot l N\right)\cdot x_l \\
+        &= \sum_{l=0}^{N-1} \exp\left(\frac{2\pi i\cdot l k}{N} \right) \underbrace{\exp(2\pi i\cdot l N)}_{=1}\cdot x_l \\
+        &= \sum_{l=0}^{N-1} \overline{\exp\left(\frac{-2\pi i \cdot l k}{N}\right)\cdot x_l} \\
+        &= \sum_{l=0}^{N-1} \overline{\omega_N^{lk} \cdot x_l} = \overline{X_k}
+    \end{align*}
+    \item[b)] For $x,y \in \R^N$ we have seen in a) that 
+
+\end{itemize}
+
+\end{document}
