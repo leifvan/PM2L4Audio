@@ -38,8 +38,21 @@
         &= \sum_{l=0}^{N-1} \overline{\exp\left(\frac{-2\pi i \cdot l k}{N}\right)\cdot x_l} \\
         &= \sum_{l=0}^{N-1} \overline{\omega_N^{lk} \cdot x_l} = \overline{X_k}
     \end{align*}
-    \item[b)] For $x,y \in \R^N$ we have seen in a) that 
-
 \end{itemize}
+
+\section*{Exercise 3.2}
+For $x=(2,3,-1,1)$ we get
+\begin{align*}
+    X_0 &= \sum_{k=0}^3 \omega_4^{0\cdot k} \cdot x_k
+    = \sum_{k=0}^3 x_k = 5 \\ \\
+    X_1 &= \sum_{k=0}^3 \omega_4^k\cdot x_k
+    = \sum_{k=0}^3 \exp\left(\frac{-2\pi i k}{N}\right)\cdot x_k \\
+    &= x_0 - i\cdot x_1 + x_2 - i\cdot x_3
+    = 2 - 3i + 1 + i = 3 - 2i \\ \\
+    X_2 &= \sum_{k=0}^3 \omega_4^{2k}\cdot x_k
+    = x_0 - x_1 + x_2 - x_3 = 2-3-1-1 = -3 \\ \\
+    X_3 &= \overline{X_1} = 3 + 2i
+\end{align*}
+All in all, $X = (5, 3-2i, -3, 3+2i)^T.$
 
 \end{document}
