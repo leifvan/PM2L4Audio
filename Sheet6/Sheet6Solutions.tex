@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{dsfont}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\begin{document}
+
+
+\title{Solutions to Sheet 6}
+\author{Lukas Drexler, Leif Van Holland \\ \\
+\textsc{Pattern Matching and Machine Learning} \\
+\textsc{for Audio Signal Processing}}
+\maketitle
+
+\section*{Exercise 6.1}
+Let $x,y:\mathbb{Z}\to\mathbb{C}$ denote signals with the corresponding $z$-transforms $X,Y$. The $z$-transform is defined as $X(z)=\sum_{n\in\mathbb{Z}}x(n)z^{-n}$.
+\begin{itemize}
+    \item [a)] \textbf{Delay Property.} From $y=x^k=T^k[x]$ we get, that $y(n)=x(n-k)$.
+    \begin{align*}
+        Y(z):&=\sum_{n\in\mathbb{Z}}y(n)z^{-n}
+        =\sum_{n\in\mathbb{Z}}x(n-k)z^{-n}
+        \overset{(*)}{=}\sum_{n\in\mathbb{Z}}x(n)z^{-n-k}\\
+        &=z^{-k}\sum_{n\in\mathbb{Z}}x(n)z^{-n}
+        =z^{-k}X(z).
+    \end{align*}
+    ${\scriptstyle(*)}$ Shift index of the sum: $n'=n+k$.
+    
+    \item [b)] \textbf{Multiplication by exponential.} $0\neq a\in\mathbb{C}, y(n)=a^n\cdot x(n)$.
+    \begin{align*}
+        Y(z):&=\sum_{n\in\mathbb{Z}}y(n)z^{-n}
+        =\sum_{n\in\mathbb{Z}}a^n x(n) z^{-n}
+        =\sum_{n\in\mathbb{Z}}x(n)\frac{a^n}{z^n}\\
+        &=\sum_{n\in\mathbb{Z}}x(n)\left(\frac{z}{a}\right)^{-n}
+        =X\left(\frac{z}{a}\right).
+    \end{align*}
+    
+    \item [c)] \textbf{Time-reversal.} Let $y(n)=x(-n)$.
+    \begin{align*}
+        Y(z):&=\sum_{n\in\mathbb{Z}}y(n)z^{-n}
+        =\sum_{n\in\mathbb{Z}}x(-n)z^{-n}
+        \overset{(*)}{=}\sum_{n\in\mathbb{Z}}x(n)z^n\\
+        &=\sum_{n\in\mathbb{Z}}x(n)\left(\frac{1}{z}\right)^{-n}=X(z^{-1}).
+    \end{align*}
+    ${\scriptstyle(*)}$ Reverse index of the sum: $n'=-n$.
+    
+\section*{Exercise 6.2}
+The frequency response $H(\omega)$ of
+\[ h(n) = \begin{cases}
+            \frac{1}{3}, &n=0,1,2,\\
+            0, &else.
+          \end{cases} \]
+is given by
+\begin{align*}
+    H(\omega):&=\sum_{k\in\mathbb{Z}}h(k)e^{-2\pi i \omega k}\\
+    &=h(0)\cdot e^{-2\pi i \omega 0} + h(1)\cdot e^{-2\pi i \omega\cdot 1} + h(2)\cdot e^{-2\pi i \omega \cdot 2}\\
+    &=\frac{1}{3}\left(1+e^{-2\pi i \omega}+e^{-4\pi i \omega}\right).
+\end{align*}
+    
+\end{itemize}
+
+
+\end{document}
