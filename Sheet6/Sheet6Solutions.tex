@@ -62,4 +62,16 @@ is given by
 \end{itemize}
 
 
+\section*{Exercise 6.3}
+Let $\omega \neq 0$, $k > 0$ and $x$ be any signal. Then
+\begin{align*}
+E_{\omega}\left[x^{k} \right](n) = e^{-2\pi i\omega n}x^{k}(n) = e^{-2\pi i\omega n} x(n-k).
+\end{align*}
+But on the other hand
+\begin{align*}
+E_{\omega}\left[x \right]^{k}(n) = E_{\omega}[x](n-k) = e^{-2\pi i \omega(n-k)}x(n-k) \neq E_{\omega}\left[x^{k} \right](n).
+\end{align*}
+Therefore, the operator is not time-invariant for $\omega \neq 0$.
+
+
 \end{document}
