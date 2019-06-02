@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{dsfont}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{array}
+
+
+\begin{document}
+
+
+\title{Solutions to Sheet 8}
+\author{Lukas Drexler, Leif Van Holland \\ \\
+\textsc{Pattern Matching and Machine Learning} \\
+\textsc{for Audio Signal Processing}}
+\maketitle
+
+\section*{Exercise 8.1}
+$
+L(5) = (3,5,6)\\
+L(4) = (2,7,9)\\
+L(3) = (1,4)\\
+L(2) = (4,6,8)\\
+L(1) = (1,3,6,9)\\
+$
+Query $(1,3)$: $L(3)-1 = (0,3)$.\\
+Query $(2,1)$: $L(1)-2 = (-1,1,4,7)$.\\
+Query $(2,5)$: $L(5)-2 = (1,3,4)$.\\
+Query $(3,4)$: $L(4)-3 = (-1,4,6)$.\\
+Query $(4,2)$: $L(2)-4 = (0,2,4)$.\\
+Therefore, the indicator functions and the resulting matching function are given by the following table:\\ \\
+\begin{tabular}{|l|*{9}{|r}|}\hline
+\bfseries Query & \bfseries -1 & \bfseries -0 & \bfseries 1 & \bfseries 2 & \bfseries 3 & \bfseries 4 & \bfseries 5 & \bfseries 6 & \bfseries 7\\ \hline\hline
+(1,3) & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+(2,1) & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1\\
+(2,5) & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & 0\\
+(3,4) & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0\\
+(4,2) & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\ \hline\hline
+$\Delta_{\mathcal{F}}$ & 2 & 2 & 2 & 1 & 2 & 4 & 0 & 1 & 1\\\hline
+\end{tabular}
+
+\section*{Exercise 8.2}
+\subsection*{a)}
+Let $S$ be a random variable of the number of target points surviving. The probability of the event
+\[E_k\: \hat{=} \text{ "the anchor point and at least }k\text{ target points survive"}\]
+can be computed as the joint probability of the anchor point surviving (i.i.d. with probability $p$) and $S\geq k$.
+\[ P(E_k) = p \cdot P(S\geq k) = p\cdot (1-P(S < k)) = p \cdot \left(1-\sum_{j=0}^{k-1}P(S=j)\right). \]
+The survival of the $F$ points can be modelled as a series of Bernoulli experiments. Therefore, $S$ is binomially distributed and the probability is given as
+\[ P(S=k) = {F\choose k}\: p^k\:(1-p)^{F-k}. \]
+We can now give explicit formulas for $k=1$ and $k=2$:
+\begin{align*}
+    P(E_1) = p\cdot (1-P(S=0)) &= p \cdot \left(1-{F\choose 0}\: p^0\:(1-p)^{F-0}\right) \\
+    &= p \cdot \left(1-(1-p)^F\right) = p - p\cdot (1-p)^F
+\end{align*}
+\begin{align*}
+    P(E_2) &= p\cdot (1-P(S=0)-P(S=1)) \\
+    &= p \cdot \left(1-{F\choose 0}\: p^0\:(1-p)^{F-0} - {F\choose 1}\: p^1\:(1-p)^{F-1}\right) \\
+    &= p \cdot \left(1-(1-p)^F - F\: p\: (1-p)^{F-1}\right) \\
+    &= p - p\:(1-p)^F - F\: p^2\: (1-p)^{F-1}
+\end{align*}
+For $p=0.5$, $F=11$, $k=2$ we get
+\[ P(E_2) = 0.5 - 0.5\cdot 0.5^{11} - 11 \cdot 0.5^2 \cdot 0.5^{11-1} = 0.5 - 12\cdot 0.5^{12} = \frac{509}{1024}. \]
+\end{document}
+
