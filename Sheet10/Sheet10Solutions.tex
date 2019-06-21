@@ -38,6 +38,22 @@
 \end{tabular}
 \end{center}
 
+
+\section*{Exercise 10.2}
+For $p = 36$ we have $F_{\text{pitch}}(p-0.5) = 2^{\frac{35.5 - 69}{12}}\cdot 440 Hz \approx 63.544 \text{ Hz}$ and
+$F_{\text{pitch}}(p+0.5) = 2^{\frac{36.5 - 69}{12}}\cdot 440 Hz \approx 67.323 \text{ Hz}$. We always have $F_{\text{coef}}(k) - F_{\text{coef}}(k-1) = F_{s} / N$. So if we want that $P(36)$ contains at least 4 coefficients, we need to ensure that \begin{align*}
+&3 \cdot F_{s} / N &&\overset{!}{\leq} 67.323 - 63.544 = 3.779\\
+\Leftrightarrow \qquad & F_{s} / N &&\overset{!}{\leq} 3.779 / 3 \approx 1.2596
+\end{align*}
+(Note that this condition is necessary but might not be sufficient. Requiring $4 \cdot F_{s} / N \leq 3.779$ is always sufficient, and in this case would lead to the same value of $N$)\\
+So we need $N$ to be the smallest power that achieves this is $2^{15} = 32768$ (because $F_{s}/ 2^{14} \approx 1.346$).
+Note that this also ensures that $P(48)$ contains at least 4 coefficients, as the intervals $\left[F_{\text{pitch}}(p-0.5),F_{\text{pitch}}(p+0.5)\right)$ only get larger for larger values of $p$.\\ 
+So for $p=48$ we have $F_{\text{pitch}}(p-0.5) = 2^{\frac{47.5 - 69}{12}}\cdot 440 Hz \approx 127.089 \text{ Hz}$ and
+$F_{\text{pitch}}(p+0.5) = 2^{\frac{48.5 - 69}{12}}\cdot 440 Hz \approx 134.646 \text{ Hz.}$\\
+Therefore, $P(48) = \lbrace 189,190,...,199,200 \rbrace$, because $F_{\text{coef}}(188) \approx 126.51 < 127.089$, $F_{\text{coef}}(189) \approx 127.18 \geq 127.089$, $F_{\text{coef}}(200) \approx 134.58 < 134.646$, and $F_{\text{coef}}(201) \approx 135.26 \geq 134.646$. Clearly, for all values of $p$ between $189$ and $200$, $F_{\text{coef}}(p)$ has to lie in the interval.
+
+
+
 \section*{Exercise 10.3}
 \subsection*{b)}
     \begin{center}
